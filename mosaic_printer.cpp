@@ -1,6 +1,3 @@
-// cw_01_drukarka.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include "pch.h"
 #include <iostream>
 #include <fstream>
@@ -9,7 +6,7 @@
 #include <Windows.h>
 #include <algorithm>
 
-char ESC = 27;	//kod znaku <ESC>, niezbêdny do wypisywania znaków
+char ESC = 27;	//kod znaku <ESC>, niezbÃªdny do wypisywania znakÃ³w
 
 void printer() {
 	int customChar[] = { 0, 0, 0, 7, 0, 0, 8, 0, 0, 23, 0, 0, 40, 0, 0, 19, 15, 192, 140, 16, 0, 80, 47, 192, 32, 80, 0, 80, 175, 192, 47, 80, 0, 80, 175, 192, 47, 80, 0, 80, 163, 192, 33, 64, 0, 80, 163, 192, 33, 64, 0, 80, 163, 192, 47, 80, 0, 80, 175, 192, 47, 80, 0, 80, 175, 192, 32, 80, 0, 80, 47, 192, 40, 16, 0, 19, 15, 192, 40, 0, 0, 23, 0, 0, 8, 0, 0, 7, 0, 0, 0, 0, 0 };
@@ -23,11 +20,11 @@ void printer() {
 	lptPort.open(portName, std::ios::out);
 	if (lptPort.is_open()) {
 		
-		lptPort << ESC << "h" << "0";	// domyœlny rozmiar znaków
-		lptPort << ESC << "l" << char(0);	// instrukcja ustawiaj¹ca margines
+		lptPort << ESC << "h" << "0";	// domyÅ“lny rozmiar znakÃ³w
+		lptPort << ESC << "l" << char(0);	// instrukcja ustawiajÂ¹ca margines
 		lptPort << ESC << (char)13;
 
-		std::string text = "Profesor Janusz Biernat ukoñczy³ studia na Wydziale Elektroniki Politechniki Wroc³awskiej w roku 1972.";
+		std::string text = "Profesor Janusz Biernat ukoÃ±czyÂ³ studia na Wydziale Elektroniki Politechniki WrocÂ³awskiej w roku 1972.";
 		lptPort << ESC << "x" << "0" << "Draft quality (lower quality) text: " << text << "\n";
 		lptPort << ESC << "x" << "1" << "Letter quality (higher quality) text: " << text << "\n";
 		lptPort << ESC << "k" << "3" << ESC << "x1" << "Prestige Font: " << text << std::endl;
